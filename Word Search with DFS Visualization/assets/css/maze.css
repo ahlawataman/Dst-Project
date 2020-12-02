@@ -1,0 +1,38 @@
+body {
+  background-color: #f9f9f9;
+  font-family: 'Roboto', sans-serif;
+}
+
+.dfs-container {
+  margin: 0 auto;
+  width: 100%;
+  
+}
+
+.dfs { margin-left: 10px; }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 10px auto;
+  width: 100%;
+  max-width: 950px;
+}
+
+.button-container button {
+  margin: 0 10px;
+  padding: 5px 15px;
+}
+
+.button-container i {
+  font-size: 35px;
+}
+
+.button-container button:hover {
+  cursor: pointer;
+}
+
+.maze-container span:hover {
+  cursor: pointer;
+  color: #737373;
+}

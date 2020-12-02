@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Word Search (DFS)</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/maze.css">
+    <link rel="stylesheet" href="assets/css/reset.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
+        <div class="container"><a class="navbar-brand" href="#"><i class="fa fa-search"></i></a><button
+                data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle
+                    navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#"><strong>Word Search</strong></a></li>
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="common problem shadow p-3 mb-5 bg-white rounded">
+        <h1 class="text-light title"
+            style="background: #343a40; width: 323px; font-family:'Courier New', Courier, monospace;">FIND THE WORDS
+        </h1>
+        <div class="problem-container">
+            <div class="row">
+                <div class="col-md-6 common-column">
+                    <table class="table1" id="table1" border="0" cellpadding="0" cellspacing="18" width="200"
+                        height="200">
+                        <tbody>
+                            <tr>
+                                <td class="t1"></td>
+                                <td class="t2"></td>
+                                <td class="t3"></td>
+                                <td class="t4"></td>
+                                <td class="t5"></td>
+                                <td class="t6"></td>
+                                <td class="t7"></td>
+                            </tr>
+                            <tr>
+                                <td class="t8"></td>
+                                <td class="t9"></td>
+                                <td class="t10"></td>
+                                <td class="t11"></td>
+                                <td class="t12"></td>
+                                <td class="t13"></td>
+                                <td class="t14"></td>
+                            </tr>
+                            <tr>
+                                <td class="t15"></td>
+                                <td class="t16"></td>
+                                <td class="t17"></td>
+                                <td class="t18"></td>
+                                <td class="t19"></td>
+                                <td class="t20"></td>
+                                <td class="t21"></td>
+                            </tr>
+                            <tr>
+                                <td class="t22"></td>
+                                <td class="t23"></td>
+                                <td class="t24"></td>
+                                <td class="t25"></td>
+                                <td class="t26"></td>
+                                <td class="t27"></td>
+                                <td class="t28"></td>
+                            </tr>
+                            <tr>
+                                <td class="t29"></td>
+                                <td class="t30"></td>
+                                <td class="t31"></td>
+                                <td class="t32"></td>
+                                <td class="t33"></td>
+                                <td class="t34"></td>
+                                <td class="t35"></td>
+                            </tr>
+                            <tr>
+                                <td class="t36"></td>
+                                <td class="t37"></td>
+                                <td class="t38"></td>
+                                <td class="t39"></td>
+                                <td class="t40"></td>
+                                <td class="t41"></td>
+                                <td class="t42"></td>
+                            </tr>
+                            <tr>
+                                <td class="t43"></td>
+                                <td class="t44"></td>
+                                <td class="t45"></td>
+                                <td class="t46"></td>
+                                <td class="t47"></td>
+                                <td class="t48"></td>
+                                <td class="t49"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6 common-column">
+                    <div class="wordsearch-list shadow p-3 mb-5 bg-white rounded">
+                        <ul style="line-height: 40px;">
+                            <li class="text-left"><i class="fa fa-arrow-right">Oath</i></li>
+                            <li class="text-left"><i class="fa fa-arrow-right">Eat</i></li>
+                            <li class="text-left"><i class="fa fa-arrow-right">Rain</i></li>
+                            <li class="text-left"><i class="fa fa-arrow-right">Pea</i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="common solution shadow p-3 mb-5 bg-white rounded">
+        <h1 class="text-light title"
+            style="background: #343a40; width: 200px; font-family:'Courier New', Courier, monospace;">SOLUTION</h1>
+        <div class="problem-container">
+            <div class="row">
+                <div class="col-md-6 common-column">
+                    <table class="table2" id="table2" border="0" cellpadding="0" cellspacing="18" width="200"
+                        height="200">
+                        <tbody>
+                            <tr>
+                                <td class="t1"></td>
+                                <td class="t2"></td>
+                                <td class="t3"></td>
+                                <td class="t4"></td>
+                                <td class="t5"></td>
+                                <td class="t6"></td>
+                                <td class="t7"></td>
+                            </tr>
+                            <tr>
+                                <td class="t8"></td>
+                                <td class="t9"></td>
+                                <td class="t10"></td>
+                                <td class="t11"></td>
+                                <td class="t12"></td>
+                                <td class="t13"></td>
+                                <td class="t14"></td>
+                            </tr>
+                            <tr>
+                                <td class="t15"></td>
+                                <td class="t16"></td>
+                                <td class="t17"></td>
+                                <td class="t18"></td>
+                                <td class="t19"></td>
+                                <td class="t20"></td>
+                                <td class="t21"></td>
+                            </tr>
+                            <tr>
+                                <td class="t22"></td>
+                                <td class="t23"></td>
+                                <td class="t24"></td>
+                                <td class="t25"></td>
+                                <td class="t26"></td>
+                                <td class="t27"></td>
+                                <td class="t28"></td>
+                            </tr>
+                            <tr>
+                                <td class="t29"></td>
+                                <td class="t30"></td>
+                                <td class="t31"></td>
+                                <td class="t32"></td>
+                                <td class="t33"></td>
+                                <td class="t34"></td>
+                                <td class="t35"></td>
+                            </tr>
+                            <tr>
+                                <td class="t36"></td>
+                                <td class="t37"></td>
+                                <td class="t38"></td>
+                                <td class="t39"></td>
+                                <td class="t40"></td>
+                                <td class="t41"></td>
+                                <td class="t42"></td>
+                            </tr>
+                            <tr>
+                                <td class="t43"></td>
+                                <td class="t44"></td>
+                                <td class="t45"></td>
+                                <td class="t46"></td>
+                                <td class="t47"></td>
+                                <td class="t48"></td>
+                                <td class="t49"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6 common-column" style="width: 500px;">
+                    <div class="show"><button class="btn btn-primary showbtn" type="button" onclick="myFunction()">Show
+                            Solution</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="common visualization shadow p-3 mb-5 bg-white rounded">
+        <h1 class="text-light title"
+            style="background: #343a40; width: 305px; font-family:'Courier New', Courier, monospace;">
+            VISUALIZATION</h1>
+        <div class="problem-container">
+            <div class="row">
+                <div class="col-md-6 common-column">
+                    <div class='dfs-container'>
+                        <div class='dfs'>
+                            Depth-First Search<br>
+                            <canvas id='dfs-graph'></canvas>
+                        </div>
+                    </div>
+                    <p>Select the word and click play <i class="fa fa-play"></i></p>
+                </div>
+                <div class="col-md-6 common-column">
+                    <div class="wordsearch-list shadow p-3 mb-5 bg-white rounded" style="margin-right: 40px;">
+                        <ul style="line-height: 25px;">
+                            <li class="text-left"><i class="fa fa-arrow-right"><button
+                                        class="btn item">Oath</button></i>
+                            </li>
+                            <li class="text-left"><i class="fa fa-arrow-right"><button class="btn item">Eat</button></i>
+                            </li>
+                            <li class="text-left"><i class="fa fa-arrow-right"><button
+                                        class="btn item">Rain</button></i>
+                            </li>
+                            <li class="text-left"><i class="fa fa-arrow-right"><button class="btn item">Pea</button></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class='button-container'>
+                        <button class="btn btn-dark" type="button" id="play" name="play">
+                            <i class="fa fa-play" aria-hidden="true"></i>
+                        </button>
+                        <button class="btn btn-danger" type="button" id="reset" name="reset">
+                            <i class="fa fa-repeat" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/project.js"></script>
+    <script src="assets/js/visualization.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
